@@ -20,7 +20,7 @@ it can trip up even the most experienced users. The purpose of this
 post is to highlight the syntactic and functional differences between
 shells as they exist in 2021. Most of the shells discussed are in the
 Bourne Shell family, with the exception of the C Shell and Rc. The C
-Shell was developed before Bourne and Rc was a later simplification
+Shell was developed before Bourne and Rc was a later simplification of
 the Bourne Shell. The POSIX standard adopted the 1988 version of the
 KornShell, which itself was based on the Bourne Shell.
 
