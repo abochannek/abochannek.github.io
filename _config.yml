@@ -1,0 +1,13 @@
+title: Alex's Blog
+author: Alex Bochannek
+email: alex@bochannek.com
+description: >-
+  A blog about scripting, computing history, and whatever else comes up...
+baseurl: ""
+url: "https://abochannek.github.io"
+github_username: abochannek
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
