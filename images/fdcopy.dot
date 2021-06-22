@@ -1,0 +1,139 @@
+digraph setup {
+	graph [rankdir = LR]
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	TTYO [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin>, fontname="courier"]
+	CMD -> TTYO [label=<stdout>, fontname="courier"]
+	CMD -> TTYO [style=invis]
+	CMD -> TTYO [label=<stderr>, fontname="courier"]
+}
+
+digraph goal {
+	graph [rankdir = LR]
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	FILE [label=<file>, fontname="courier", shape=cylinder]
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin>, fontname="courier"]
+	CMD -> FILE [label=<stdout>, fontname="courier"]
+	CMD -> FILE [style=invis]
+	CMD -> FILE [label=<stderr>, fontname="courier"]
+}
+
+digraph stderr_wrong1 {
+	graph [rankdir = LR]
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	subgraph cluster_0 
+	{
+		label=<Terminal>
+		fontname="italic"
+		shape=box
+		style=rounded
+		TTYO1 [label=<>, shape=box, style=dashed]
+		TTYO2 [label=<>, shape=box, style=dashed]
+	}
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin>, fontname="courier"]
+	CMD -> TTYO1 [label=<stdout>, fontname="courier"]
+	CMD -> TTYO2 [label=<stderr>, fontname="courier"]
+}
+
+digraph stderr_wrong2 {
+	graph [rankdir = LR]
+	compound=true
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	subgraph cluster_0 
+	{
+		label=<Terminal>
+		fontname="italic"
+		shape=box
+		style=rounded
+		TTYO1 [label=<>, shape=box, style=dashed]
+		TTYO2 [label=<>, shape=box, style=dashed]
+	}
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin>, fontname="courier"]
+	CMD -> TTYO1 [label=<stdout>, fontname="courier"]
+	CMD -> TTYO1 [label=<stderr>, fontname="courier"]
+	CMD -> TTYO2 [style=invis]
+}
+
+digraph stderr_wrong3 {
+	graph [rankdir = LR]
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	FILE [label=<file>, fontname="courier", shape=cylinder]
+	subgraph cluster_0 
+	{
+		label=<Terminal>
+		fontname="italic"
+		shape=box
+		style=rounded
+		TTYO1 [label=<>, shape=box, style=dashed]
+		TTYO2 [label=<>, shape=box, style=dashed]
+	}
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin>, fontname="courier"]
+	CMD -> TTYO1 [style=invis]
+	CMD -> TTYO1 [label=<stderr>, fontname="courier"]
+	CMD -> TTYO2 [style=invis]
+	CMD -> FILE [label=<stdout>, fontname="courier"]
+}
+
+digraph stderr_right1 {
+	graph [rankdir = LR]
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	subgraph cluster_0 
+	{
+		label=<Terminal>
+		fontname="italic"
+		shape=box
+		style=rounded
+		TTYO1 [label=<>, shape=box, style=dashed]
+		TTYO2 [label=<>, shape=box, style=dashed]
+	}
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin>, fontname="courier"]
+	CMD -> TTYO1 [label=<stdout>, fontname="courier"]
+	CMD -> TTYO2 [label=<stderr>, fontname="courier"]
+}
+
+digraph stderr_right2 {
+	graph [rankdir = LR]
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	FILE [label=<file>, fontname="courier", shape=cylinder]
+	subgraph cluster_0 
+	{
+		label=<Terminal>
+		fontname="italic"
+		shape=box
+		style=rounded
+		TTYO1 [label=<>, shape=box, style=dashed]
+		TTYO2 [label=<>, shape=box, style=dashed]
+	}
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin>, fontname="courier"]
+	CMD -> FILE [label=<stdout>, fontname="courier"]
+	CMD -> TTYO1 [style=invis]
+	CMD -> TTYO2 [label=<stderr>, fontname="courier"]
+}
+
+digraph stderr_right3 {
+	graph [rankdir = LR]
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	FILE [label=<file>, fontname="courier", shape=cylinder]
+	subgraph cluster_0 
+	{
+		label=<Terminal>
+		fontname="italic"
+		shape=box
+		style=rounded
+		TTYO1 [label=<>, shape=box, style=dashed]
+		TTYO2 [label=<>, shape=box, style=dashed]
+	}
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin>, fontname="courier"]
+	CMD -> TTYO1 [style=invis]
+	CMD -> TTYO2 [style=invis]
+	CMD -> FILE [label=<stdout>, fontname="courier"]
+	CMD -> FILE [label=<stderr>, fontname="courier"]
+}
