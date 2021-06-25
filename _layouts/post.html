@@ -1,0 +1,53 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        Created {{ page.date | date: date_format }}<br>
+	{% if page.date != page.last_modified_at %}
+	Edited {{ page.last_modified_at | date: date_format }}
+	{% endif %}
+      </time>
+      {%- if page.author -%}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
+      {%- endif -%}</p>
+    <div class="PageNavigation">
+      {% if page.previous.url %}
+      <a class="prev" href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
+      {% else %}
+      <a class="prev" href=""></a>
+      {% endif %}
+      {% if page.next.url %}
+      <a class="next" href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
+      {% else %}
+      <a class="next" href=""></a>
+      {% endif %}
+    </div>
+  </header>
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {%- if site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+  {%- endif -%}
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  <div class="related">
+    {% if content and page.related %}
+    <h2>Related Posts</h2>
+    <ul>
+      {% for post in site.posts %}
+      {% if page.related contains post.title %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</article>

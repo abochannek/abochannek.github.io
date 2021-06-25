@@ -11,3 +11,7 @@ github_username: abochannek
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-last-modified-at
+
+last-modified-at:
+    date-format: "%b %-d, %Y"

@@ -1,3 +1,15 @@
+digraph default {
+	graph [rankdir = LR]
+	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	TTYO [label=<Terminal>, fontname="italic", shape=box, style=rounded]
+	CMD [label=<cmd>, fontname="courier", shape=box]
+	TTYI -> CMD [label=<stdin 0>, fontname="courier"]
+	CMD -> TTYO [label=<stdout 1>, fontname="courier"]
+	CMD -> TTYO [style=invis]
+	CMD -> TTYO [label=<stderr 2>, fontname="courier"]
+}
+
+
 digraph setup {
 	graph [rankdir = LR]
 	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
@@ -39,7 +51,8 @@ digraph stderr_wrong1 {
 }
 
 digraph stderr_wrong2 {
-	graph [rankdir = LR]
+	graph [rankdir = LR,
+	       label="cmd 2>&1", labelloc="t", fontname="courier"]
 	compound=true
 	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
 	subgraph cluster_0 
@@ -59,7 +72,8 @@ digraph stderr_wrong2 {
 }
 
 digraph stderr_wrong3 {
-	graph [rankdir = LR]
+	graph [rankdir = LR,
+	       label="cmd 2>&1 >file", labelloc="t", fontname="courier"]
 	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
 	FILE [label=<file>, fontname="courier", shape=cylinder]
 	subgraph cluster_0 
@@ -98,7 +112,8 @@ digraph stderr_right1 {
 }
 
 digraph stderr_right2 {
-	graph [rankdir = LR]
+	graph [rankdir = LR,
+	       label="cmd >file", labelloc="t", fontname="courier"]
 	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
 	FILE [label=<file>, fontname="courier", shape=cylinder]
 	subgraph cluster_0 
@@ -118,7 +133,8 @@ digraph stderr_right2 {
 }
 
 digraph stderr_right3 {
-	graph [rankdir = LR]
+	graph [rankdir = LR,
+	       label="cmd >file 2>&1", labelloc="t", fontname="courier"]
 	TTYI [label=<Terminal>, fontname="italic", shape=box, style=rounded]
 	FILE [label=<file>, fontname="courier", shape=cylinder]
 	subgraph cluster_0 
