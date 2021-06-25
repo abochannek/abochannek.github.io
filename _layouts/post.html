@@ -10,7 +10,7 @@ layout: default
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         Created {{ page.date | date: date_format }}<br>
 	{% if page.date != page.last_modified_at %}
-	Edited {{ page.last_modified_at | date: date_format }}
+	Edited {% last_modified_at %}
 	{% endif %}
       </time>
       {%- if page.author -%}
