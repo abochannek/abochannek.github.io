@@ -9,8 +9,8 @@ layout: default
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         Created {{ page.date | date: date_format }}<br>
-	{% if page.date != page.last_modified_at %}
-	Edited {% last_modified_at %}
+	{% if page.last_modified and page.date != page.last_modified %}
+	Last Modified {{ page.last_modified | date: date_format }}
 	{% endif %}
       </time>
       {%- if page.author -%}

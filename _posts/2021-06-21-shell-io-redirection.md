@@ -2,6 +2,7 @@
 layout: post
 title:  "Shell I/O Redirection (Part 2)"
 date:   2021-06-21 21:15:10 -0700
+last_modified: 2021-06-25 16:56:11 -0700
 categories: Shell
 related: [
 	"Shell I/O Redirection (Part 1)"
