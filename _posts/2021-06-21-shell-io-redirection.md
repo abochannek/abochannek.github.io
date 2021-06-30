@@ -2,7 +2,7 @@
 layout: post
 title:  "Shell I/O Redirection (Part 2)"
 date:   2021-06-21 21:15:10 -0700
-last_modified: 2021-06-25 16:56:11 -0700
+last_modified: 2021-06-30 12:34:54 -0700
 categories: Shell
 related: [
 	"Shell I/O Redirection (Part 1)"
@@ -119,7 +119,7 @@ and other file descriptors are possible here as well.
 | csh   | n/a                             | n/a                              |
 | zsh   | `cmd 0<&3 `                     | `cmd 2>&1`                       |
 
-> ### Sidebar
+> ### Other Shells
 >
 > The syntax for I/O redirection in POSIX-standard shells is arguably
 > confusing and inconsistent. In the 10th Edition of Research Unix and
