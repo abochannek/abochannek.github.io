@@ -125,16 +125,17 @@ esac
 
 Another application for pattern matching is in test commands for `if`,
 `while`, or `until` constructs. Even though pattern matching for tests
-was introduced in the 1988 version of KornShell, POSIX did _not_ adopt
+was introduced in the KornShell, POSIX did _not_ adopt
 this. Therefore, when writing POSIX-compatible (or traditional Bourne)
-shell code using the `test` or `[` utility pattern matching is not
-available.
+shell code using `test` or `[` pattern matching is not available.
 
 The KornShell introduced the conditional expression `[[...]]` and used
-`=` for pattern matching. In its 1993 version `=` was declared
-obsolete and `==` was introduced for pattern matching (`!=` is the
-negated version) and `=~` for _regular expression_ matching. Bash and
-Zsh use the same pattern.
+`==` for pattern matching (`!=` is the negated version) and `=~` for
+_regular expression_ matching. Bash and Zsh use the same pattern.
+
+The `=` operator to test for equality is used by `test`. KornShell
+originally also used it for pattern matching, but made it obsolete in
+ksh93. Bash and Zsh treat `=` and `==` as identical.
 
 Example:
 
@@ -149,28 +150,25 @@ left-hand side is either a string or evaluates to a string.
 
 > ### `if`, `test`, `[`, and `[[`
 >
-> The `if` construct executes a test command to determine what to
-> execute next. A command's exit value of `0` has the logical value of
-> `true`, anything else is `false`. The `test` command has many
-> options for file, string, or numeric tests. The `[` command is
-> nothing else but `test` that expects `]` to be its last argument. In
-> Bash, those are both shell builtin commands and they usually also
-> exist as standalone commands for Bourne Shell use.
+> The `if` construct uses command exit values: `0` has the logical
+> value of `true`, anything else is `false`. This is how the `test`
+> command is used which has many options for file, string, or numeric
+> tests. `[` is the same as the `test` command, but expects `]` to be
+> its last argument.
 >
 > A typical scenario would be to test if a file exists like `if [ -e
 > file ]; then ...` or to check the value of a variable like `if [ $value
 > -gt 5 ]; then ...`.
 >
-> The `[[` construct that originated in KornShell is a shell
-> conditional construct like `if`, not a command, and implements
-> practically all the same tests that `test` does. It also supports
-> pattern (and regular expression) matching and has more flexible
-> Boolean operators.
+> The `[[` is a shell conditional construct like `if`, not a command,
+> and implements practically all the same tests that `test` does. It
+> also supports pattern (and regular expression) matching and has more
+> flexible Boolean operators.
 >
 > As a rule of thumb to minimize surprises:
 > - Use `[[` and `==` when using Bash, Zsh, or KornShell
-> - Use `test`, `[`, and `=` when only a POSIX-compliant shell can be
->   assumed
+> - Use `test`, `[`, and `=` when the shell is POSIX-only (like the
+>   Almquist Shell)
 > - Don't use `-a` or `-o` Boolean operators for `test` or `[` because
 >   POSIX only specifies them as an extension
 
@@ -182,8 +180,8 @@ and the value can be accessed by `$HOME` or `${HOME}`. The latter form
 is necessary to avoid ambiguity when using the options below.
 
 Common parameter expansion expressions are `${#paramater}` for the
-length of the variable value or `${parameter:-word}` to replace
-substitute `word` if `parameter` is not set or null.
+length of the variable value or `${parameter:-word}` to substitute
+`word` if `parameter` is not set or null.
 
 The POSIX standard, based on ksh88, specifies substring removal
 options based on patterns -- ksh93 expanded that functionality with
