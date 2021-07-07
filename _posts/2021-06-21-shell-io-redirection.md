@@ -5,7 +5,8 @@ date:   2021-06-21 21:15:10 -0700
 last_modified: 2021-06-30 12:34:54 -0700
 categories: Shell
 related: [
-	"Shell I/O Redirection (Part 1)"
+	"Shell I/O Redirection (Part 1)",
+	"Shell I/O Redirection (Part 3)"
 	]
 
 ---

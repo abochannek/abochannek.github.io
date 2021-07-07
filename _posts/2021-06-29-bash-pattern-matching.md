@@ -2,7 +2,7 @@
 layout: post
 title:  "Bash Pattern Matching (Part 1)"
 date:   2021-06-29 18:39:15 -0700
-last_modified: 2021-06-30 13:04:23 -0700
+last_modified: 2021-06-30 18:12:47 -0700
 categories: Bash Globbing
 related: 
 ---

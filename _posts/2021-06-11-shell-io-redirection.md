@@ -2,10 +2,11 @@
 layout: post
 title:  "Shell I/O Redirection (Part 1)"
 date:   2021-06-11 19:04:53 -0700
-last_modified: 2021-06-25 16:57:56 -0700
+last_modified: 2021-07-06 17:52:56 -0700
 categories: Shell
 related: [
-	"Shell I/O Redirection (Part 2)"
+	"Shell I/O Redirection (Part 2)",
+	"Shell I/O Redirection (Part 3)"
 	]
 ---
 
@@ -85,10 +86,12 @@ support specific file descriptors in their redirection syntax. A
 common workaround for Csh would be to use a sub-shell like so:
 ```( cmd > /dev/tty ) >& file```
 
-In addition to numeric file descriptors, ksh93, Bash, and Zsh also
-allow variable names to be used for file descriptors that will be
-assigned a file descriptor number greater than 10 and live beyond the
-execution of the command.
+> ### Variables
+> 
+> In addition to numeric file descriptors, ksh93, Bash, and Zsh also
+> allow variable names to be used for file descriptors that will be
+> assigned a file descriptor number greater than 10 and live beyond
+> the execution of the command.
 
 # Redirecting Input and Output
 
