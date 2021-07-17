@@ -1,0 +1,13 @@
+digraph syntax1 {
+     node [shape = plaintext]
+     syntax[label = <
+	    <font face="monospace">find </font><i>Options Arguments...</i>
+    >];
+}
+
+digraph syntax2 {
+     node [shape = plaintext]
+     syntax[label = <
+	    <font face="monospace">find </font><i>Options  Pathnames  BooleanExpression</i>
+    >];
+}
