@@ -2,10 +2,11 @@
 layout: post
 title:  "Bash Pattern Matching (Part 2)"
 date:   2021-09-09 20:23:31 -0700
-last_modified: 
+last_modified: 2021-10-09 20:12:47 -0700
 categories: Bash Globbing
 related: [
-	"Bash Pattern Matching (Part 1)"
+	"Bash Pattern Matching (Part 1)",
+	"Bash Pattern Matching (Part 3)"
 	]
 
 ---
