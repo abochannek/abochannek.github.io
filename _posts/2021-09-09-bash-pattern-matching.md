@@ -2,7 +2,7 @@
 layout: post
 title:  "Bash Pattern Matching (Part 2)"
 date:   2021-09-09 20:23:31 -0700
-last_modified: 2021-10-09 20:12:47 -0700
+last_modified: 2021-11-10 19:05:39 -0800
 categories: Bash Globbing
 related: [
 	"Bash Pattern Matching (Part 1)",
@@ -179,9 +179,38 @@ the character encoding used.
 | `[:punct:]` | punctuation            | `[:space:]`  | all whitespace                 |
 | `[:upper:]` | uppercase alphabetic   | `[:xdigit:]` | hexadecimal digit characters   |
 
-Bash also supports two other, rarely used POSIX extensions:
-equivalence classes and collating sequences. Their availability
-depends on the whether or not they are defined in the locale used.
+> ### Locales
+>
+> The `locale` command shows what locale is currently selected:
+>
+> ```
+> $ locale
+> LANG="en_US.UTF-8"
+> LC_COLLATE="en_US.UTF-8"
+> LC_CTYPE="en_US.UTF-8"
+> LC_MESSAGES="en_US.UTF-8"
+> LC_MONETARY="en_US.UTF-8"
+> LC_NUMERIC="en_US.UTF-8"
+> LC_TIME="en_US.UTF-8"
+> LC_ALL=
+> ```
+>
+> The `LANG` environment variable is usually set as the default during
+> system installation and has the lowest priority -- it is used as a
+> fallback if other variables are not set. The `LC_ALL` environment
+> variable can be set to override all more specific `LC_`
+> variables. The collection of available character classes for the
+> locale can be selected with the `LC_CTYPE` environment variable. The
+> format for a locale name is the ISO 639 language code, followed by
+> the ISO 3166 country or region code, follwed by an optional
+> character set. `locale -a` shows all available locales that are
+> installed at the system level.
+
+Bash supports two other, rarely used POSIX extensions to character
+classes: equivalence classes and collating sequences. Their
+availability depends on the whether or not they are defined in the
+locale used. The `LC_COLLATE` environment variable determines
+collation rules including these extensions.
 
 Equivalence classes allow the use of one character to stand in for
 equivalent other characters. For example, if "n" and "ñ" are defined
