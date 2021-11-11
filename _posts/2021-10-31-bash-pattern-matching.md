@@ -2,7 +2,7 @@
 layout: post
 title:  "Bash Pattern Matching (Part 3)"
 date:   2021-10-30 19:26:45 -0700
-last_modified:
+last_modified: 2021-11-10 18:06:02 -0800
 categories: Bash Globbing
 related: [
 	"Bash Pattern Matching (Part 1)",
@@ -200,9 +200,10 @@ key.)
 
 In the context of pattern matching for globbing, a couple of useful
 functions are `glob-expand-word` (`C-x *`) and `glob-list-expansions`
-(`C-x g`). The latter is effectively the same as hitting `TAB`
-twice. The `glob-expand-word` function executes the filename expansion
-and inserts the result right in the active command line.
+(`C-x g`). The latter is similar to what hitting `TAB` twice does, but
+it expands patterns rather than completing a partial filename. The
+`glob-expand-word` function executes the filename expansion and
+inserts the result right in the active command line.
 
 # End
 
