@@ -2,6 +2,7 @@
 layout: post
 title:  "Using the find Command Effectively (Part 2)"
 date:   2021-11-30 18:41:58 -0800
+last_modified: 2021-11-30 18:46:23 -0800
 categories: Utilities
 related: [
 	"Using the find Command Effectively (Part 1)"
@@ -17,7 +18,7 @@ related: [
 
 # Listing the Found Files
 
-As already discussed in [Using the find Command Effectively (Part 1)](../../07/16/find-usage.html),
+As already discussed in [Using the find Command Effectively (Part 1)](../../07/17/find-usage.html),
 the default, implicit action for `find` is `-print`. This primary
 outputs the current pathname, one per line, and always evaluates to
 _true_.
@@ -64,7 +65,7 @@ A number of `find` implementations support actions that delete
 (`-delete`) or back up (`-cpio`) files. The most common (and only
 POSIX-compliant actions on files are) are `-exec` and `-ok`.
 
-In the [previous post](../../07/16/find-usage.html) in this series, an
+In the [previous post](../../07/17/find-usage.html) in this series, an
 example was used from the early Unix manual pages to remove
 files. Omitting the tests, the command using more current quoting
 practices looks like this:
