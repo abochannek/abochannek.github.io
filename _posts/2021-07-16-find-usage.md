@@ -2,7 +2,11 @@
 layout: post
 title:  "Using the find Command Effectively (Part 1)"
 date:   2021-07-16 21:30:35 -0700
+last_modified: 2021-11-30 18:15:42 -0800
 categories: Utilities
+related: [
+	"Using the find Command Effectively (Part 2)"
+	]
 ---
 
 # Contents
@@ -13,14 +17,16 @@ categories: Utilities
 
 # What is `find` for?
 
-When the `find` command appeared in 5th Edition Unix (_1974_), the
-example from the manual page shows how to remove files that match a
-certain pattern of names and which have not been accessed in a
+When the `find` command was documented in the 5th Edition Unix
+(_1974_) manual, the usage example shows how to remove files that
+match a certain pattern of names and which have not been accessed in a
 week. In a later version of the Unix manual, `find` is used to search
 for files in preparation for backing them up with the `cpio`
 utility. The motivation for using `find` at the time appears to have
 been limited disk space on a shared system; `find` could be used to
-identify files to remove or to move off-line.
+identify files to remove or to move off-line. The command itself
+originated in a version of Unix called the Programmer's Workbench or
+PWB.
 
 While available disk space is not as much of a concern these days, the
 approach `find` took makes it extremely flexible when locating
@@ -248,10 +254,10 @@ that is zero. In other words, it tries to find files that are zero
 bytes in length but also greater than 512k. The workaround for this is
 to use the next smaller unit: `find . -size +512k -size -1024k`.
 
-When not using units but 512-byte blocks as defined in POSIX, the size
-of the file tested is rounded up to the next 512-byte boundary, which
-means that to find a file that is more that 2KB but less than 3KB, a
-`find . -size +4 -size -7` is required.
+When not using units, but 512-byte blocks as defined in POSIX, the
+size of the file tested is rounded up to the next 512-byte boundary,
+which means that to find a file that is more that 2KB but less than
+3KB, a `find . -size +4 -size -7` is required.
 
 #### Type
 
