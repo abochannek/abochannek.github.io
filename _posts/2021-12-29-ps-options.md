@@ -2,6 +2,7 @@
 layout: post
 title:  "About the ps Command's Options"
 date:   2021-12-29 01:44:04 -0800
+last_modified: 2021-12-29 14:27:48 -0800
 categories: Utilities
 ---
 
@@ -9,9 +10,9 @@ categories: Utilities
 - [About the `ps` Command](#about-the-ps-command)
 - [The Origin of `ps` Option Styles](#the-origin-of-ps-option-styles)
 - [`ps` Option Categories](#ps-option-categories)
-- [Which processes to show](#which-processes-to-show)
-- [What to show about the processes](#what-to-show-about-the-processes)
-- [How to format the output](#how-to-format-the-output)
+- [Which Processes Should `ps` Display?](#which-processes-should-ps-display)
+- [Selecting Fields](#selecting-fields)
+- [Formatting `ps` output](#formatting-ps-output)
 - [Conclusion](#conclusion)
 
 # About the `ps` Command
@@ -111,9 +112,9 @@ styles.
 
 The `ps` command options roughly fall into these categories:
 
-- Which processes to show
-- What to show about the processes
-- How to format the output
+- Picking processes
+- Selecting which information to show
+- Formatting the output
 
 Depending on the specific implementation of `ps`, a small number of
 options exist to, e.g., provide help or debug information. Especially
@@ -130,7 +131,7 @@ acquired `/proc` with the SVR4 release (_1989_), which was licensed
 for numerous other commercial Unix versions, most notably Sun's
 Solaris (_1992_).
 
-# Which Processes to Show
+# Which Processes Should `ps` Display?
 
 The POSIX standard specifies that `ps` without any options displays
 the running processes owned by the user invoking the command; only
@@ -219,7 +220,7 @@ control to list IDs for processes, process groups, and sessions is
 Interestingly, macOS does support the session concept, but `ps` and
 other tools cannot display the session ID.
 
-# What to Show About the Processes
+# Selecting Fields
 
 The POSIX standard suggests a default set of output fields: process
 ID, terminal name, cumulative execution time, and command name. The
@@ -261,7 +262,7 @@ The POSIX standard shows an example of spaces in header names, which
 runs counter to the `-o` option allowing space-separated field
 names. The example does not work for GNU or macOS `ps`.
 
-# How to Format the Output
+# Formatting `ps` Output
 
 There are no formatting options specified in the POSIX standard for
 `ps`. If the column width is insufficient ID fields will show numeric
