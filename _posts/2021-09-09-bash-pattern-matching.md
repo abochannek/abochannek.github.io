@@ -2,7 +2,7 @@
 layout: post
 title:  "Bash Pattern Matching (Part 2)"
 date:   2021-09-09 20:23:31 -0700
-last_modified: 2021-11-10 19:05:39 -0800
+last_modified: 2022-01-02 16:49:42 -0800
 categories: Bash Globbing
 related: [
 	"Bash Pattern Matching (Part 1)",
@@ -33,6 +33,10 @@ To keep `extglob` set for all sessions, it can be put into the user's
 file is read by the user's `.bash_profile` or `.profile` as is
 customary or otherwise the `shopt` will not be executed for login
 sessions.
+
+Starting with Bash 4.1 (_2009_), extended patterns are automatically
+enabled in conditional expressions (`[[...]]`) regardless of the setting
+of `extglob`.
 
 Extended patterns are defined as a list of one or more patterns (which
 themselves can be extended patterns) separated by a `|` and enclosed
