@@ -2,7 +2,7 @@
 layout: post
 title:  "Emacs: Auto-Save and Backup Files"
 date:   2022-11-30 02:10:15 -0800
-last_modified: 2022-11-30 02:10:15 -0800
+last_modified: 2022-12-30 22:22:40 -0800
 categories: Emacs
 ---
 
@@ -30,9 +30,9 @@ The behavior of a feature will be explained independent of how the
 configuration variables are set. They can be set manually in the Emacs
 init file (e.g., in `init.el`) or with `customize-mode`, which was
 introduced with Emacs 20.1 (_1997_) to simplify setting options in
-easy to find groups. Another approach is the popular, pre-configured
-Emacs version Spacemacs (_2014_) that is meant to make Emacs easier
-for new users (especially those coming from Vim.)
+easy to find groups. Another approach are pre-configured Emacs starter
+kits that are meant to make Emacs easier for new users (e.g., those
+coming from Vim.)
 
 # Auto-Saving
 
@@ -290,6 +290,26 @@ In `dired` mode, the shortcuts for flag for deletion are:
 The subtle difference is that the value of `dired-kept-versions` is
 used instead of `kept-new-versions`. To execute the deletion of the
 flagged files, use `x` in `dired` mode.
+
+#### Example
+
+The defaults Emacs offers are sensible. The following example
+configuration offers an alternate approach.
+
+```
+(setq
+ version-control t
+ delete-old-versions t
+ kept-new-versions 10
+ kept-old-versions 0)
+```
+
+These settings result in numbered backups with the ten most recent
+saves of a file to be kept and none of the original ones. It also
+causes Emacs to delete excess numbered backups to be deleted silently.
+
+Using the `.` command in `dired` mode deletes all but the last two
+numbered backups, which is the default.
 
 # Conclusion
 
