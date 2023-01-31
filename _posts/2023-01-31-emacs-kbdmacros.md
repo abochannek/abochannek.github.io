@@ -2,6 +2,7 @@
 layout: post
 title:  "Emacs: Keyboard Macros (Part 1)"
 date:   2023-01-31 01:52:33 -0800
+last_modified: 2023-01-31 13:15:38 -0800
 categories: Emacs
 related: [
 	"Emacs: Auto-Save and Backup Files",
@@ -35,10 +36,19 @@ Recording keyboard macros already existed in _E_:
 > times.
 
 The _EMACS Manual for ITS Users_ ([AI Memo
-555](https://dspace.mit.edu/handle/1721.1/6329), _1981_) explains the
-connection between the origin of EMACS as macros itself and keyboard
-macros.
+555](https://dspace.mit.edu/handle/1721.1/6329), _1981_) shows how to
+create keyboard macros in the "EMACS command language" with the
+`KBDMAC` library. TECO EMACS did not use Lisp as an extension language
+and keyboard macros were easier to compose than writing TECO macros:
 
+> Keyboard macros differ from ordinary EMACS commands, in that they
+> are written in the EMACS command language rather than in TECO. This
+> makes it easier for the novice to write them, and makes them more
+> convenient as temporary hacks. However, the EMACS command language
+> is not powerful enough as a programming language to be useful for
+> writing anything intelligent or general. For such things, TECO must
+> be used.
+>
 > EMACS functions were formerly known as macros (which is part of the
 > explanation of the name EMACS), because they were macros within the
 > context of TECO as an editor. We decided to change the terminology
@@ -47,8 +57,10 @@ macros.
 > keyboard macros.
 
 Keyboard macros in GNU Emacs therefore originated in the earlier TECO
-EMACS and the very same key bindings for defining and executing
-keyboard macros continue to be available.
+EMACS and the very same key bindings for defining and executing them
+continue to be available. The distinction between keyboard macros and
+extensions written in the underlying programming language (Elisp in
+the case of GNU Emacs) also continues to be true.
 
 # Defining And Executing Macros
 
