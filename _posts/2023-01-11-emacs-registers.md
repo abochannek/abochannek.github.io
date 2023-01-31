@@ -2,9 +2,11 @@
 layout: post
 title:  "Emacs: Registers"
 date:   2023-01-10 21:17:52 -0800
+last_modified: 2023-01-30 23:07:39 -0800
 categories: Emacs
 related: [
-	"Emacs: Auto-Save and Backup Files"
+	"Emacs: Auto-Save and Backup Files",
+	"Emacs: Keyboard Macros (Part 1)"
 	]
 
 ---
