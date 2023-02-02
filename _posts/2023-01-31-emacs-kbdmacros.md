@@ -2,7 +2,7 @@
 layout: post
 title:  "Emacs: Keyboard Macros (Part 1)"
 date:   2023-01-31 01:52:33 -0800
-last_modified: 2023-01-31 13:15:38 -0800
+last_modified: 2023-02-01 22:21:08 -0800
 categories: Emacs
 related: [
 	"Emacs: Auto-Save and Backup Files",
@@ -132,10 +132,18 @@ e` executes the most recent macro sixteen times.
 
 A shortcut to executing a macro is ending the definition with `C-x e`
 instead of `C-x )` which immediately executes it. Because it also
-takes a prefix, the above macro could have been defined and execute on
-all following three lines with this sequence:
+takes a prefix, the above macro could have been defined and executed
+on all following three lines with this sequence:
 
-`C-x (` `M-u` `C-n` `M-3` `C-x e`
+`C-x (` `M-u` `C-n` `C-u 3` `C-x e`
+
+Repeat macro execution at the time of definition works subtly
+differently when using `<F4>`. `C-x e` end the definition of the macro
+first and then executes the macro as many times as the prefix given.
+`<F4>` on the other hand runs the macro _total_ number of prefix
+times. In other words, to run the macro four times total at the end of
+the definition, the numeric prefix for `C-x e` needs to be `3` and for
+`<F4>` it needs to be `4`.
 
 Macro execution on a _region_ has some special semantics. The command
 `C-x C-k r` runs a macro on a line and then moves the point to the
