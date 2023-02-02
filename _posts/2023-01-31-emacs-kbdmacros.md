@@ -2,7 +2,7 @@
 layout: post
 title:  "Emacs: Keyboard Macros (Part 1)"
 date:   2023-01-31 01:52:33 -0800
-last_modified: 2023-02-01 22:21:08 -0800
+last_modified: 2023-02-01 22:25:40 -0800
 categories: Emacs
 related: [
 	"Emacs: Auto-Save and Backup Files",
@@ -201,14 +201,14 @@ The below tables shows the difference between storing the most recent
 macro in a key sequence and a register, both using `U` in this
 example.
 
-|              | Store Macro   | Call Macro  |
-|--------------|:--------------|:------------|
-| Key sequence | `C-x C-k b U` | `C-x C-k U` |
-| Register     | `C-x C-k x U` | `C-x r j U` |
+|              | Store Macro     | Call Macro    |
+|--------------|:----------------|:--------------|
+| Key sequence | `C-x C-k b` `U` | `C-x C-k` `U` |
+| Register     | `C-x C-k x` `U` | `C-x r j` `U` |
 
 In order to save macros across sessions named macros are used. When a
 name is assigned to a keyboard macro, it becomes and interactive Elisp
-function. After naming the macro `upper` with `C-x C-k n upper`, it
+function. After naming the macro `upper` with `C-x C-k n` `upper`, it
 can then be called with `M-x upper`.
 
 To save keyboard macros in the `init.el` file, simply open it up and
