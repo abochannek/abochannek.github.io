@@ -2,7 +2,7 @@
 layout: post
 title:  "Using the find Command Effectively (Part 2)"
 date:   2021-11-30 18:41:58 -0800
-last_modified: 2021-11-30 18:46:23 -0800
+last_modified: 2023-03-06 18:15:40 -0800
 categories: Utilities
 related: [
 	"Using the find Command Effectively (Part 1)"
@@ -141,24 +141,40 @@ A simple example for `xargs` usage is to archive all files with a
 specific filename to a `tar` archive.
 
 ```
-find . -type f -name \*.bak -print0 | xargs -0 tar -cf ../backup.tar
+find . -type f -name \*.bak -print0 | xargs -0 tar -cf ../backup.$(date -u +%Y%m%d%H%M%S).tar
 ```
 
 This pipeline will first find all files (relative to the current
 directory) that end in `.bak` and then pass that list of files to the
-`tar` command to create the archive `backup.tar`. As mentioned above,
-`-print0` is used to resolve issues with whitespace in filenames; the
-`-0` counterpart in `xargs` expects the `NUL`-separated words to be
-passed in. This particular example could have also been accomplished
-using `-exec +`. The `-exec +` primary to `find` is in fact
-recommended over `xargs` in the POSIX standard.
+`tar` command to create the archive. The name of the archive file
+includes a date, which is inserted into the filename using command
+substitution: `backup.$(date -u +%Y%m%d%H%M%S).tar` turns into
+`backup.20230307003536.tar`, for example.
+
+As mentioned above, `-print0` is used to resolve issues with
+whitespace in filenames; the `-0` counterpart in `xargs` expects the
+`NUL`-separated words to be passed in. This particular example could
+have also been accomplished using `-exec +`. The `-exec +` primary to
+`find` is in fact recommended over `xargs` in the POSIX standard.
 
 The `xargs` utility supports several useful options. The `-p` option
 will prompt before command execution. This is similar to `find`'s
 `-ok`, for which no `-ok +` exists.
 
-The `-n` and `-L` options specify how many input words or lines,
-respectively, should be used for each command invocation.
+> ### Executing Example Commands
+>
+> In an earlier version of this post, the archive filename was simply
+> `backup.tar`. If someone were to run the command like that, it would
+> overwrite an existing `backup.tar` with every execution. The example
+> has been changed to prevent this from happening in case the command
+> is performed on a production system.
+>
+> It is important to consider the implications of example commands in
+> these posts and to execute them in a safe environment. Usually a
+> local `tmp` directory is sufficient.
+
+The `-n` and `-L` options to `xargs` specify how many input words or
+lines, respectively, should be used for each command invocation.
 
 For example, the command `paste <( seq 1 10 ) <( seq 1 10 )` creates
 two columns of the numbers one through ten.

@@ -2,7 +2,7 @@
 layout: post
 title:  "About the ps Command's Options"
 date:   2021-12-29 01:44:04 -0800
-last_modified: 2021-12-29 14:27:48 -0800
+last_modified: 2023-03-06 18:15:13 -0800
 categories: Utilities
 ---
 
@@ -12,7 +12,7 @@ categories: Utilities
 - [`ps` Option Categories](#ps-option-categories)
 - [Which Processes Should `ps` Display?](#which-processes-should-ps-display)
 - [Selecting Fields](#selecting-fields)
-- [Formatting `ps` output](#formatting-ps-output)
+- [Formatting `ps` Output](#formatting-ps-output)
 - [Conclusion](#conclusion)
 
 # About the `ps` Command

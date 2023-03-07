@@ -2,7 +2,7 @@
 layout: post
 title:  "Emacs: Auto-Save and Backup Files"
 date:   2022-11-30 02:10:15 -0800
-last_modified: 2023-01-30 23:08:16 -0800
+last_modified: 2023-03-06 18:14:21 -0800
 categories: Emacs
 related: [
 	"Emacs: Registers",
@@ -14,7 +14,7 @@ related: [
 # Contents
 - [Introduction](#introduction-to-the-emacs-series-of-posts)
 - [Auto-Saving](#auto-saving)
-- [Backup files](#backup-files)
+- [Backup Files](#backup-files)
 - [Conclusion](#conclusion)
 
 # Introduction To The Emacs Series Of Posts
@@ -182,8 +182,24 @@ authoritative source for it.
 As long as the file remains visited, no new backup will be saved even
 if the backup file has been deleted. Only upon opening the file again
 either after the buffer has been killed or Emacs has been restarted,
-will a new backup file be written after the first save. Creating a new
-backup file can be forced with a `C-u C-x C-s`.
+will a new backup file be written after the first save.
+
+Saving a file with `C-u C-x C-s` is equivalent to saving the file the
+first time after it has been reopened, i.e., a backup will be made the
+_next_ time the file is saved. Saving with `C-u C-u C-x C-s` creates a
+backup file and saves the current buffer at the same time, which is
+likely what a user would expect. A triple-`C-u` combines both of the
+above functions.
+
+Forcing backups can be a useful when significant or repeated changes
+are made to a file, but the buffer has not been killed. It is worth
+considering whether in this case [version control](#version-control)
+may not be a better alternative or a supplemental approach to using
+backup files. An easy way to achieve some basic version control
+without setting up a version control system is to use [Numbered
+Backups](#numbered-backups). In this scenario, forcing writing a
+backup file is similar to committing a file in a version control
+system.
 
 Backup file creation can be disabled altogether, disabled for certain
 directories (temporary directories by default), or they can be created
