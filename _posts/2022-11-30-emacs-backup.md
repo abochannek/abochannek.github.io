@@ -6,7 +6,8 @@ last_modified: 2023-03-06 18:14:21 -0800
 categories: Emacs
 related: [
 	"Emacs: Registers",
-	"Emacs: Keyboard Macros (Part 1)"
+	"Emacs: Keyboard Macros (Part 1)",
+	"Emacs: Keyboard Macros (Part 2)"
 	]
 
 ---

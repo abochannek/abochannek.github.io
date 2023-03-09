@@ -2,11 +2,12 @@
 layout: post
 title:  "Emacs: Keyboard Macros (Part 1)"
 date:   2023-01-31 01:52:33 -0800
-last_modified: 2023-02-01 22:25:40 -0800
+last_modified: 2023-03-08 23:50:47 -0800
 categories: Emacs
 related: [
 	"Emacs: Auto-Save and Backup Files",
-	"Emacs: Registers"
+	"Emacs: Registers",
+	"Emacs: Keyboard Macros (Part 2)"
 	]
 
 ---
@@ -15,6 +16,7 @@ related: [
 - [Emacs Keyboard Macros Origins](#emacs-keyboard-macros-origins)
 - [Defining And Executing Macros](#defining-and-executing-macros)
 - [Editing And Naming Macros](#editing-and-naming-macros)
+- [Keyboard Macro Ring](#keyboard-macro-ring)
 
 # Emacs Keyboard Macros Origins
 
@@ -118,6 +120,9 @@ foo bar baz QUUX
 Notice that the cursor, the point, has moved to the next empty line
 because of the `C-n` in the macro.
 
+During macro definition, the mode line will show _Def_. When macro
+definiion is completed, the indicator will disappear.
+
 #### Repeated Macro Execution
 
 Executing a macro repeatedly can be accomplished in two ways, either
@@ -207,18 +212,50 @@ example.
 | Register     | `C-x C-k x` `U` | `C-x r j` `U` |
 
 In order to save macros across sessions named macros are used. When a
-name is assigned to a keyboard macro, it becomes and interactive Elisp
+name is assigned to a keyboard macro, it becomes an interactive Elisp
 function. After naming the macro `upper` with `C-x C-k n` `upper`, it
 can then be called with `M-x upper`.
 
 To save keyboard macros in the `init.el` file, simply open it up and
 use `M-x insert-kbd-macro` to insert the macro as Elisp code into the
-buffer to save it across sessions.
+buffer.
+
+# Keyboard Macro Ring
+
+When a keyboard macro has been defined, it is put on a ring with the
+previously defined macros in the session. That's why `C-x e` is
+defined as executing the most recent, i.e., the last macro.
+
+The keyboard macro ring comes with some convenient functions to move
+around, view, delete, transpose and edit macros.
+
+| `C-x C-k C-v` | View keyboard macro ring              |
+| `C-x C-k C-p` | Rotate ring to previous macro         |
+| `C-x C-k C-n` | Rotate ring to next macro             |
+| `C-x C-k C-t` | Transpose the last and previous macro |
+| `C-x C-k C-k` | Execute last macro                    |
+| `C-x C-k C-l` | Execute second to last macro          |
+| `C-x C-k C-e` | Edit last macro                       |
+
+With a couple of exceptions, using one of these commands does no
+require the `C-x C-k` prefix to execute another command immediately
+thereafter. For example, `C-x C-k C-v` followed by repeated `C-v` lets
+the user look through the entire macro ring. This also means that once
+the right macro has been found, a simple `C-k` is enough to execute
+it.
+
+The two exceptions are:
+  * `C-e` won't allow another command to be executed
+  * `C-t` can only be executed as `C-x C-k C-t` and can't be followed
+    by another command
+
+By default, the ring holds eight keyboard macro. This value can be
+customized by setting the `kmacro-ring-max` variable.
 
 # Coming Up...
 
 This post covered the basics of keyboard macros. Some more advanced
-features are addressed in the second part: the keyboard macro ring,
+features are addressed in the second part: keyboard macro ring
 counters and queries, recursive editing, and the interactive step-wise
 editor. They offer additional capabilities that are worth exploring
 even if they may be used less frequently. Counters and queries in
