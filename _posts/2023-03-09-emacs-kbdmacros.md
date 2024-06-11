@@ -2,6 +2,7 @@
 layout: post
 title:  "Emacs: Keyboard Macros (Part 2)"
 date:   2023-03-09 00:40:29 -0800
+last_modified: 2024-06-10 19:13:13 -0700
 categories: Emacs
 related: [
 	"Emacs: Auto-Save and Backup Files",
@@ -53,9 +54,9 @@ by one. A prefix can be given to `C-x C-k C-i` to change the increment
 value.
 
 An issue in this example is that the default start value for a macro
-counter `0` and i needs to be changed to `1`. The command for that is
-`C-x C-k C-c` with the starting value as its prefix (or entered at the
-prompt if there is no prefix.)
+counter is `0` and it needs to be changed to `1`. The command for that
+is `C-x C-k C-c` with the starting value as its prefix (or entered at
+the prompt if there is no prefix.)
 
 | `C-x C-k C-c` | Set macro counter |
 
@@ -69,10 +70,10 @@ means that the macro definition and execution can be combined:
 
 `C-u 1` `C-x C-k C-c` `<F3>` case `<SPC>` `<F3>` : `<RET>` `C-u 6` `<F4>`
 
-The use of `<F3>` here has two different meanings, depending on
-context. The first one starts the definition of the macro (equivalent
-to `C-x (`) and the second one inserts the counter value (equivalent
-to `C-x C-k C-i`.)
+The use of `<F3>` here shows that it has two different meanings,
+depending on context. The first one starts the definition of the macro
+(equivalent to `C-x (`) and the second one inserts the counter value
+(equivalent to `C-x C-k C-i`.)
 
 > #### Format Strings
 >
@@ -117,8 +118,8 @@ Let's say the goal is to print a pattern like this:
 223322
 ```
 
-This can be accomplished with this macro (using `<f3>` instead of `C-x
-C-k C-i` for brevity.)
+First set the counter to `1` with `C-u 1` `C-x C-k C-c` and then
+define the following macro with `C-x (` or `<f3>`:
 
 `C-u 0` `<f3>` `<f3>` `C-u 0` `<f3>` `<f3>` `C-u` `C-x C-k C-c`
 `<f3>` `C-x C-k C-a` `<f3>` `RET`
@@ -126,25 +127,31 @@ C-k C-i` for brevity.)
 This can be broken down into the following pieces:
 
 | `C-u 0` `<f3>`      | inserts the counter without increment                |
-| `<f3>`              | inserts the counter and increments                   |
+| `<f3>`              | inserts and increments the counter                   |
 | `C-u 0` `<f3>`      | inserts the counter without increment                |
-| `<f3>`              | inserts the counter and increments                   |
+| `<f3>`              | inserts and increments the counter                   |
 | `C-u` `C-x C-k C-c` | resets the counter to the beginning of the iteration |
-| `<f3>`              | inserts the counter and increments                   |
+| `<f3>`              | inserts and increments the counter                   |
 | `C-u` `C-x C-k C-a` | resets the counter to the last insert value          |
-| `<f3>`              | inserts the counter and increments                   |
+| `<f3>`              | inserts and increments the counter                   |
 | `RET`               | next line                                            |
 
+In this example `<f3>` is used instead of `C-x C-k C-i` for brevity,
+but be aware that `<f3>` may not be available.
+
 The pattern `<f3>` `C-u` `C-x C-k C-a` `<f3>` is used here for
-demonstration purposes, it can be replaced with a `C-u` `<f3>` `<f3>`.
+demonstration purposes only. It can be replaced with another `C-u 0`
+`<f3>` `<f3>`.
 
 This example presents an interesting challenge. The `C-u` `C-x C-k
 C-c` construct uses the macro counter from the most recent execution
 of a macro. What that means is that if the macro counter is reset
 between executions, the next execution still carries with it the
 previous one's final counter value. The solution to this issue is to
-either decrement the counter back to the original value or to consider
-using [number registers](../../01/11/emacs-registers.html) instead.
+either decrement the counter back to the original value in the macro
+definition or to consider using a [number
+register](../../01/11/emacs-registers.html) instead of the macro
+counter.
 
 # Querying During Macro Execution
 
@@ -239,18 +246,18 @@ understand the construction and execution of keyboard macros.
 
 Calc mode, the advanced Emacs calculator, uses keyboard macros to
 implement programmability. Similar to how many scientific calculators
-record sequences of instructions by recording keystrokes, Calc takes
-advantage of the keyboard macro facility and extends it.
+record sequences of instructions by keystrokes, Calc takes advantage
+of the keyboard macro facility and extends it.
 
 Defining a macro in Calc uses the standard key sequences. It
 integrates the macro editing facility with its own user-defined key
-naming approach to bind macros to a two-key sequence with the `z`
+naming approach to bind macros to a two-key sequence with the `Z`
 prefix.
 
-Calc binds `C-x * m` to parsing a keyboard macro definition and
-assigning it to the last macro. While it is a Calc keybinding, this
-command is independent of Calc and a useful way to quickly create
-macros from stored definitions.
+Calc binds `C-x * m` to reading keyboard macro definition in a region
+and assigning it to the last macro. While it is a Calc keybinding,
+this command is independent of Calc and a useful way to quickly create
+macros from text instead of entering them one keystroke at a time.
 
 Calc extends keyboard macros with its own commands to produce a
 programming language. It implements these features:
@@ -272,8 +279,8 @@ of macros and the different editing functions make them more
 manageable. Libraries of macros can be built up with named macros.
 
 It is not necessary to master all keyboard macro features to take
-advantage of them. Even just the record and execute function is enough
-to make a significant difference. Locating and extracting data from
+advantage of them. Even just the record and execute functions are
+enough to get value from macros. Locating and extracting data from
 multiple buffers, reformatting irregular text, or calling up a
-sequence of commands for specific use cases are examples where
-keyboard macros shine.
+sequence of mode-specific commands are examples where keyboard macros
+shine.

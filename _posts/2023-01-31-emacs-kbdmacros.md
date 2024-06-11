@@ -2,7 +2,7 @@
 layout: post
 title:  "Emacs: Keyboard Macros (Part 1)"
 date:   2023-01-31 01:52:33 -0800
-last_modified: 2023-03-08 23:50:47 -0800
+last_modified: 2024-06-10 17:15:13 -0700
 categories: Emacs
 related: [
 	"Emacs: Auto-Save and Backup Files",
@@ -21,7 +21,7 @@ related: [
 # Emacs Keyboard Macros Origins
 
 The purpose of keyboard macros is to make repeated entry of commands
-easier and less failure-prone. They are different from text expanders,
+easier and less error-prone. They are different from text expanders,
 which Emacs offers with the `abbrev` functionality.
 
 Macro recorders are a common feature of different applications as well
@@ -121,7 +121,7 @@ Notice that the cursor, the point, has moved to the next empty line
 because of the `C-n` in the macro.
 
 During macro definition, the mode line will show _Def_. When macro
-definiion is completed, the indicator will disappear.
+definition is completed, the indicator will disappear.
 
 #### Repeated Macro Execution
 
@@ -142,18 +142,6 @@ on all following three lines with this sequence:
 
 `C-x (` `M-u` `C-n` `C-u 3` `C-x e`
 
-Repeat macro execution at the time of definition works subtly
-differently when using `<F4>`. `C-x e` end the definition of the macro
-first and then executes the macro as many times as the prefix given.
-`<F4>` on the other hand runs the macro _total_ number of prefix
-times. In other words, to run the macro four times total at the end of
-the definition, the numeric prefix for `C-x e` needs to be `3` and for
-`<F4>` it needs to be `4`.
-
-Macro execution on a _region_ has some special semantics. The command
-`C-x C-k r` runs a macro on a line and then moves the point to the
-beginning of the next line.
-
 > # "New" Commands
 >
 > Since Emacs 22 (_2007_), a new `kmacro` package defined different
@@ -169,15 +157,29 @@ beginning of the next line.
 > Emacs supports, it is important to determine if the function keys
 > are available to Emacs before using them for keyboard macros.
 
+Repeat macro execution at the time of definition works subtly
+differently when using `<F4>`. `C-x e` end the definition of the macro
+first and then executes the macro as many times as the prefix given.
+`<F4>` on the other hand runs the macro _total_ number of prefix
+times. In other words, to run the macro four times total at the end of
+the definition, the numeric prefix for `C-x e` needs to be `3` and for
+`<F4>` it needs to be `4`.
+
+Macro execution on a _region_ has some special semantics. The command
+`C-x C-k r` runs a macro on a line and then moves the point to the
+beginning of the next line.
+
 # Editing And Naming Macros
 
 Emacs keyboard macros use the keyboard commands and not the underlying
 functions bound to those keys. Editing macros therefore is editing
 those keyboard commands. The `C-x C-k C-e` key sequence brings up a
 buffer with the definition of the most recent macro, which can then be
-edited right there. If for example an additional cursor movement
-forward is required, simply putting a `C-f` on a new line of the macro
-adds it to the definition. `C-c C-c` ends the editing of the macro.
+edited right in that buffer. The literal representation of a keyboard
+command is used in editing mode. If for example an additional cursor
+movement forward is required, simply putting a `C` `-` `f` on a new
+line of the macro adds it to the definition. `C-c C-c` ends the
+editing of the macro.
 
 Appending to the most recent macro can be done by prefixing either
 `C-x (` or `<F3>`. A single `C-u` universal prefix first _executes_
@@ -197,7 +199,7 @@ register.
 
 Some key sequences are reserved for macros to avoid collision with
 other key bindings: `C-x C-k` followed by the numbers `0` through `9`
-and the letters `A` through `Z`, similar to how
+and the uppercase ASCII letters `A` through `Z`, similar to how
 [registers](../../01/11/emacs-registers.html) are named. If any of
 those keybindings are used, only the single digit or letter needs to
 be given when binding the macro.
