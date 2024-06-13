@@ -2,7 +2,7 @@
 layout: post
 title:  "Emacs: Registers"
 date:   2023-01-10 21:17:52 -0800
-last_modified: 2023-01-31 16:02:45 -0800
+last_modified: 2024-06-13 09:42:56 -0700
 categories: Emacs
 related: [
 	"Emacs: Auto-Save and Backup Files",
@@ -237,7 +237,7 @@ The main bookmarks commands are:
 
 Bookmark names default to the filename, but can be given any other
 name. At exit time of Emacs, bookmarks are by default saved in
-`‘~/.emacs.d/bookmarks`. Bookmarks can be annotated, automatically
+`~/.emacs.d/bookmarks`. Bookmarks can be annotated, automatically
 saved, and customized in other ways.
 
 The bookmarks list command (`C-x r l`) shows all bookmarks and offers
