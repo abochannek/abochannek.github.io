@@ -6,6 +6,7 @@ description: >-
 baseurl: ""
 url: "https://abochannek.github.io"
 github_username: abochannek
+markdown: kramdown
 
 # Build settings
 theme: minima
